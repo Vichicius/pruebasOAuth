@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('googlelogin', function() {
+    return redirect()->route('externalLogin');
+});
+
+Route::get('/auth/redirect', [UserController::class, 'redirect'])->name('externalLogin');
+
+//este al google api console developer y al env
+Route::get('/auth/callback', [UserController::class, 'createUser'])->name('loginCall');;

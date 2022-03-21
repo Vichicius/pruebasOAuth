@@ -47,13 +47,9 @@ class UserController extends Controller
                 $response['msg'] = "Usuario creado";
                 $response['user'] = $user;
                 $response['status'] = 1;
-
-                return response()->json($response, 200);
             } else {
                 $response['msg'] = "Usuario ya existe";
                 $response['status'] = 0;
-
-                return response()->json($response);
             }
         }catch (\Exception $e) {
             $response['msg'] = $e->getMessage();
